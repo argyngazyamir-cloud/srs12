@@ -1,4 +1,6 @@
 #include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 void workingTime() {
@@ -92,6 +94,51 @@ void disciplinaryModule() {
     cout << "- провести служебную проверку;\n";
     cout << "- передать информацию ответственному руководителю.\n";
 }
+void sabotageProtocol() {
+    int laptopNumber;
+
+    cout << "\n=====================================\n";
+    cout << "     ПРОТОКОЛ РЕАГИРОВАНИЯ\n";
+    cout << "=====================================\n";
+    cout << "Введите номер ноутбука: ";
+    cin >> laptopNumber;
+
+    while (cin.fail() || laptopNumber <= 0) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Ошибка! Введите номер ноутбука: ";
+        cin >> laptopNumber;
+    }
+
+    using namespace chrono_literals;
+
+    cout << "\n[1] Фиксация сообщения об инциденте...\n";
+    this_thread::sleep_for(1s);
+
+    cout << "Проверяется сообщение о возможном выносе ноутбука №"
+         << laptopNumber << " и сопутствующих обстоятельствах.\n";
+    this_thread::sleep_for(2s);
+
+    cout << "\n[2] Уведомление ответственного лица...\n";
+    this_thread::sleep_for(1s);
+    cout << "Передайте информацию ответственному за кабинет ИКТ.\n";
+    this_thread::sleep_for(2s);
+
+    cout << "\n[3] Проверка обстоятельств...\n";
+    this_thread::sleep_for(1s);
+    cout << "Сопоставьте доступные записи и сведения об имуществе.\n";
+    this_thread::sleep_for(2s);
+
+    cout << "\n[4] Подготовка служебной записки...\n";
+    this_thread::sleep_for(1s);
+    cout << "Зафиксируйте дату, место и источник сообщения.\n";
+    this_thread::sleep_for(2s);
+
+    cout << "\n[5] Передача информации руководству...\n";
+    this_thread::sleep_for(1s);
+    cout << "Дальнейшие меры принимаются после проверки фактов.\n";
+    cout << "\nПротокол завершен.\n";
+}
 int main() {
     int choice;
     int answer;
@@ -107,7 +154,8 @@ int main() {
         cout << "3. Материальная ответственность\n";
         cout << "4. Учет рабочего времени\n";
         cout << "5. Дисциплинарные взыскания\n";
-        cout << "6. Завершить работу\n";
+        cout << "6. Протокол реагирования\n";
+        cout << "7. Завершить работу\n";
         cout << "Выберите пункт: ";
 
         cin >> choice;
@@ -142,13 +190,13 @@ int main() {
         break;
         
         case 6:
-        cout << "\nПереходим к контрольному вопросу.\n";
+        sabotageProtocol();
         break;
         default:
             cout << "Ошибка! Такого пункта меню нет.\n";
         }
 
-    } while (choice != 6);
+    } while (choice != 7);
 
     do {
         cout << "\nСколько часов в неделю обязан отрабатывать ";
