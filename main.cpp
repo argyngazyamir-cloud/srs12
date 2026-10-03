@@ -1,6 +1,66 @@
 #include <iostream>
 using namespace std;
 
+void workingTime() {
+    int days;
+    double rate;
+    double hours;
+
+    cout << "\n=====================================\n";
+    cout << "       УЧЕТ РАБОЧЕГО ВРЕМЕНИ\n";
+    cout << "=====================================\n";
+
+    cout << "Введите количество рабочих дней в неделю: ";
+    cin >> days;
+
+    while (cin.fail() || days <= 0) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Ошибка! Введите корректное количество дней: ";
+        cin >> days;
+    }
+
+    cout << "Введите ставку (например, 0.5): ";
+    cin >> rate;
+
+    while (cin.fail() || rate <= 0) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Ошибка! Введите корректную ставку: ";
+        cin >> rate;
+    }
+
+    double normHours = 40 * rate;
+
+    cout << "\nНорма рабочего времени: "
+         << normHours << " часов в неделю.\n";
+
+    do {
+        cout << "Введите количество часов работы в день: ";
+        cin >> hours;
+
+        while (cin.fail() || hours <= 0) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "Ошибка! Введите корректное количество часов: ";
+            cin >> hours;
+        }
+
+        double weeklyHours = days * hours;
+        double deficit = normHours - weeklyHours;
+
+        if (weeklyHours < normHours) {
+            double percent = (deficit / normHours) * 100;
+            cout << "\nДефицит рабочего времени: "
+                 << deficit << " часов (" << percent
+                 << "% от нормы).\n";
+            cout << "Для продолжения подтвердите норму в 4 часа в день.\n";
+        }
+    } while (hours != 4);
+
+    cout << "\nНорма подтверждена: 4 часа в день.\n";
+    cout << "Модуль рабочего времени завершен.\n";
+}
 int main() {
     int choice;
     int answer;
