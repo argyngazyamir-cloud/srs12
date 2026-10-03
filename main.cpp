@@ -192,6 +192,11 @@ int main() {
         case 6:
         sabotageProtocol();
         break;
+
+        case 7:
+        cout << "\nПереходим к контрольному вопросу.\n";
+        break;
+
         default:
             cout << "Ошибка! Такого пункта меню нет.\n";
         }
